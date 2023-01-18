@@ -18,6 +18,7 @@ Few Keypoints about the Application:
 - Divide load at Server by distributing File Download work among many Peers
 - Great reduction in Download time
 - Multi-Threading to perform parallel tasks
+- While File download, Peer uses the concept of "First Chunk available with Minimal Peers" to give priority to the Chunks
 - Even if a Peer has only few chunks (part) of file, he will be able to contribute as a Seeder (Can share the chunk he has to other user without it)
 - Use of SHA1 to validate the downloaded data
 
@@ -35,6 +36,7 @@ Few Keypoints about the Application:
 - Tracker maintains the File metadata i.e., Information of file like FileName, FileSize, NumOfChunks, ChunkSHA1, ChunkUser (Particular Chunk is available with which User)
 - Upon a Peer's request to download a File, Tracker just sends the File Metadata it has to the Peer
 - The Bit-Torrent Peer after receiving the FileMetadata from tracker, will initiate many Parallel connection requests with multiple Peers requesting to send particular Chunk data to it. (Parallel working is acheived by use of Multi-Threading)
+- While downloading the File, Peer uses concept of "First Chunk available with Minimal Peers" to select a Chunk to download first - i.e., Priority is given to the Chunk which is available with Minimum number of Peers because the Chunk once downloded, the Peer can act as a Seeder for ther Chunk and hence increase its availability accross network
 - As the Peer-Peer connection is parallel, various chunk data can be downloaded in-parallel at same time. This helps in great reduction of Download Time.
 - After a particular chunk is downloaded, the Thread validates the downloaded chunk data by comparing its SHA1 with the SHA1 of chunk received from Tracker. If SHA1 is matched, it is written to the target file.
 - Once all the threads have completed their job, the complete File is available with the User.
